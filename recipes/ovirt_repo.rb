@@ -19,6 +19,14 @@ when 'rhel'
   include_recipe 'yum'
   include_recipe 'yum-epel'
   include_recipe 'selinux::disabled'
+  directory '/dev/virtio-ports' do
+    action :create
+    mode '0755'
+  end
+  file '/dev/virtio-ports/com.redhat.rhevm.vdsm' do
+    action :create_if_missing
+    mode '0777'
+  end
 end
 
 package 'ovirt-guest-agent' do
@@ -27,6 +35,5 @@ end
 
 service 'ovirt-guest-agent' do
   action [:enable, :start]
-  #action [:enable]
 end
 
