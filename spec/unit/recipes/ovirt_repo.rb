@@ -31,7 +31,7 @@ describe 'CentOS setup' do
   end
 
   it 'should include the selinux::disable recipe' do
-    expect(chef_run).to include_recipe 'sellinux::recipe'
+    expect(chef_run).to include_recipe 'selinux::recipe'
   end
 end
 
