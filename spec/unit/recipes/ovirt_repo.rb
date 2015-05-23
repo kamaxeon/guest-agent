@@ -17,7 +17,8 @@ end
 describe 'CentOS setup' do
   let(:chef_run) do
     runner = ChefSpec::SoloRunner.new(
-      'platform_family' => 'rhel'
+      platform: 'centos',
+      version:  '6.3'
       )
     runner.converge('guest-agent::ovirt_repo')
   end
@@ -38,7 +39,8 @@ end
 describe 'Ubuntu setup' do
   let(:chef_run) do
     runner = ChefSpec::SoloRunner.new(
-      'platform_family' => 'debian'
+      platform: 'ubuntu',
+      version:  '12.04'
       )
     runner.converge('guest-agent::ovirt_repo')
   end
