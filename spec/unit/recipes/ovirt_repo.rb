@@ -24,15 +24,15 @@ describe 'CentOS setup' do
   end
 
   it 'should include the yum recipe' do
-    expect(chef_run).to include_recipe 'yum::default'
+    expect(chef_run).to include_recipe 'yum'
   end
 
   it 'should include the yum epel recipe' do
-    expect(chef_run).to include_recipe 'yum::epel'
+    expect(chef_run).to include_recipe 'yum-epel'
   end
 
   it 'should include the selinux::disable recipe' do
-    expect(chef_run).to include_recipe 'selinux::recipe'
+    expect(chef_run).to include_recipe 'selinux::disabled'
   end
 end
 
