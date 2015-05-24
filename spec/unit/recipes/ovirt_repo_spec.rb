@@ -1,5 +1,5 @@
 require 'chefspec'
-#require 'chefspec/berkshelf'
+require 'chefspec/berkshelf'
 
 describe 'guest-agent::ovirt_repo' do
   let(:chef_run) { ChefSpec::SoloRunner.new.converge(described_recipe) }
@@ -14,13 +14,12 @@ end
 
 # Regression Tests
 
-%w(6.4 7.0).each do |version| 
-  describe "CentOS #{version} setup" do
+%w(5.10 6.4 6.5 6.6 7.0).each do |version|
+  describe "CentOS #{version}" do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new(
         platform: 'centos',
-        version:  version
-        )
+        version:  version)
       runner.converge('guest-agent::ovirt_repo')
     end
 
@@ -38,14 +37,12 @@ end
   end
 end
 
-
 %w(12.04 14.04).each do |version|
-  describe "Ubuntu #{version} setup" do
+  describe "Ubuntu #{version}" do
     let(:chef_run) do
       runner = ChefSpec::SoloRunner.new(
         platform: 'ubuntu',
-        version:  version
-        )
+        version:  version)
       runner.converge('guest-agent::ovirt_repo')
     end
     it 'should include the apt recipe' do

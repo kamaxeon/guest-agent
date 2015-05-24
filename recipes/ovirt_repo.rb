@@ -16,9 +16,9 @@ when 'debian'
     key node['guest-agent']['ovirt']['ubuntu']['repo']['key']
   end
 when 'rhel'
+  include_recipe 'selinux::disabled'
   include_recipe 'yum'
   include_recipe 'yum-epel'
-  include_recipe 'selinux::disabled'
   directory '/dev/virtio-ports' do
     action :create
     mode '0755'
@@ -36,4 +36,3 @@ end
 service 'ovirt-guest-agent' do
   action [:enable, :start]
 end
-
